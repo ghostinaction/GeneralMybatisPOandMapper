@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.itcast.ssm.mapper.CpyinfoMapper" >
+  <resultMap id="BaseResultMap" type="cn.itcast.ssm.po.Cpyinfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="chuanzheng" property="chuanzheng" jdbcType="VARCHAR" />
+    <result column="people" property="people" jdbcType="VARCHAR" />
+    <result column="bus_email" property="busEmail" jdbcType="VARCHAR" />
+    <result column="tech_email" property="techEmail" jdbcType="VARCHAR" />
+    <result column="page" property="page" jdbcType="VARCHAR" />
+    <result column="business" property="business" jdbcType="VARCHAR" />
+    <result column="qqchat" property="qqchat" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, address, phone, chuanzheng, people, bus_email, tech_email, page, business, qqchat
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cpyinfo
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cpyinfo
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.itcast.ssm.po.Cpyinfo" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into cpyinfo (address, phone, chuanzheng, 
+      people, bus_email, tech_email, 
+      page, business, qqchat
+      )
+    values (#{address,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{chuanzheng,jdbcType=VARCHAR}, 
+      #{people,jdbcType=VARCHAR}, #{busEmail,jdbcType=VARCHAR}, #{techEmail,jdbcType=VARCHAR}, 
+      #{page,jdbcType=VARCHAR}, #{business,jdbcType=VARCHAR}, #{qqchat,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.itcast.ssm.po.Cpyinfo" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into cpyinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="chuanzheng != null" >
+        chuanzheng,
+      </if>
+      <if test="people != null" >
+        people,
+      </if>
+      <if test="busEmail != null" >
+        bus_email,
+      </if>
+      <if test="techEmail != null" >
+        tech_email,
+      </if>
+      <if test="page != null" >
+        page,
+      </if>
+      <if test="business != null" >
+        business,
+      </if>
+      <if test="qqchat != null" >
+        qqchat,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="chuanzheng != null" >
+        #{chuanzheng,jdbcType=VARCHAR},
+      </if>
+      <if test="people != null" >
+        #{people,jdbcType=VARCHAR},
+      </if>
+      <if test="busEmail != null" >
+        #{busEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="techEmail != null" >
+        #{techEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="page != null" >
+        #{page,jdbcType=VARCHAR},
+      </if>
+      <if test="business != null" >
+        #{business,jdbcType=VARCHAR},
+      </if>
+      <if test="qqchat != null" >
+        #{qqchat,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.itcast.ssm.po.Cpyinfo" >
+    update cpyinfo
+    <set >
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="chuanzheng != null" >
+        chuanzheng = #{chuanzheng,jdbcType=VARCHAR},
+      </if>
+      <if test="people != null" >
+        people = #{people,jdbcType=VARCHAR},
+      </if>
+      <if test="busEmail != null" >
+        bus_email = #{busEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="techEmail != null" >
+        tech_email = #{techEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="page != null" >
+        page = #{page,jdbcType=VARCHAR},
+      </if>
+      <if test="business != null" >
+        business = #{business,jdbcType=VARCHAR},
+      </if>
+      <if test="qqchat != null" >
+        qqchat = #{qqchat,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.itcast.ssm.po.Cpyinfo" >
+    update cpyinfo
+    set address = #{address,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      chuanzheng = #{chuanzheng,jdbcType=VARCHAR},
+      people = #{people,jdbcType=VARCHAR},
+      bus_email = #{busEmail,jdbcType=VARCHAR},
+      tech_email = #{techEmail,jdbcType=VARCHAR},
+      page = #{page,jdbcType=VARCHAR},
+      business = #{business,jdbcType=VARCHAR},
+      qqchat = #{qqchat,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
